@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPU Scheduler — RR vs SJF</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@600;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="simulator/simulator.css">
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="hdr-logo">OS</div>
+      <div class="hdr-text">
+        <h1>CPU Scheduling Simulator</h1>
+        <p>// C5 · ROUND ROBIN vs SJF NON-PREEMPTIVE vs SJF PREEMPTIVE (SRTF)</p>
+      </div>
+      <div class="hdr-pills">
+        <span class="pill pill-rr">RR</span>
+        <span class="pill pill-sjf">SJF NP</span>
+        <span class="pill pill-srtf">SRTF</span>
+      </div>
+    </header>
+
+    <div class="layout">
+
+      <aside class="sidebar">
+
+        <div>
+          <div class="sec-head">Config</div>
+          <div class="config-box">
+            <div class="field">
+              <label>Time Quantum (RR)</label>
+              <input type="number" id="quantum" value="2" min="1">
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="sec-head">Add Process</div>
+          <div class="inp-grid">
+            <div class="field"><label>PID</label><input type="text" id="i-id" placeholder="P1" maxlength="4"></div>
+            <div class="field"><label>Arrival</label><input type="number" id="i-at" placeholder="0" min="0"></div>
+            <div class="field"><label>Burst</label><input type="number" id="i-bt" placeholder="5" min="1"></div>
+          </div>
+          <div id="add-err" class="err-msg" style="margin-top:8px;"></div>
+          <button class="btn btn-add" style="margin-top:10px;" onclick="addProc()">＋ Add Process</button>
+        </div>
+
+        <div>
+          <div class="sec-head">Process Queue</div>
+          <div id="proc-list" class="proc-list">
+            <div class="proc-empty" id="proc-empty">NO PROCESSES · ADD SOME</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="sec-head">Quick Load</div>
+          <div class="chip-row">
+            <button class="chip" onclick="load('basic')">Scenario A</button>
+            <button class="chip" onclick="load('shortjob')">Scenario B</button>
+            <button class="chip" onclick="load('fairness')">Scenario C</button>
+            <button class="chip" onclick="load('longjob')">Scenario D</button>
+            <button class="chip" onclick="load('validation')">Scenario E</button>
+          </div>
+        </div>
+
+        <div style="margin-top:auto;">
+          <div id="run-err" class="err-msg" style="margin-bottom:8px;"></div>
+          <button class="btn btn-run" onclick="runSim()">▶ &nbsp;RUN SIMULATION</button>
+          <button class="btn btn-reset" style="margin-top:8px;" onclick="resetAll()">↺ &nbsp;RESET ALL</button>
+        </div>
+
+      </aside>
+
+      <main class="right" id="right">
+        <div class="placeholder">
+          <div class="ph-ring"><span>⚙</span></div>
+          <div class="ph-text">
+            ADD PROCESSES &amp; RUN SIMULATION<br>
+            <span style="font-size:9px;opacity:.5;">RESULTS WILL APPEAR HERE</span>
+          </div>
+        </div>
+      </main>
+
+    </div>
+  </div>
+  <script src="simulator/simulator.js"></script>
+</body>
+
+</html>
